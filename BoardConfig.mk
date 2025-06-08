@@ -75,13 +75,19 @@ BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a800000.dwc3
 BOARD_KERNEL_CMDLINE += androidboot.super_partition=system
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/c0c4000.sdhci
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
+BOARD_KERNEL_CMDLINE += printk.devkmsg=on
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz-dtb
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/$(BOARD_KERNEL_IMAGE_NAME)
+TARGET_KERNEL_ARCH := $(TARGET_ARCH)
+TARGET_KERNEL_HEADER_ARCH := $(TARGET_ARCH)
 
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -141,8 +147,11 @@ $(foreach p, $(call to-upper, $(TREBLE_PARTITIONS)), \
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
+# Use mke2fs to create ext4 images
+TARGET_USES_MKE2FS := true
+
 # TWRP specific build flags
-TW_DEVICE_VERSION := 1-K4.19 by ∂σткιт
+TW_DEVICE_VERSION := 1-K4.19 by Kneba
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
@@ -156,6 +165,7 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 TW_USE_TOOLBOX := true
 TW_EXCLUDE_APEX := true
+TW_EXCLUDE_TWRPAPP := true
 TW_INCLUDE_RESETPROP := true
 TW_FRAMERATE := 60
 TW_OVERRIDE_SYSTEM_PROPS := \

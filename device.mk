@@ -6,6 +6,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.boot.dynamic_partitions=true \
 	ro.boot.dynamic_partitions_retrofit=true
 
+PRODUCT_PACKAGES += \Add commentMore actions
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service \
+    libion
+
+# Display
+PRODUCT_PACKAGES += \
+    vendor.display.config@1.0 \
+    vendor.display.config@1.0.vendor
+
 # Fastbootd
 TW_INCLUDE_FASTBOOTD := true
 PRODUCT_PACKAGES += \
