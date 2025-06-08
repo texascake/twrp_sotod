@@ -6,7 +6,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.boot.dynamic_partitions=true \
 	ro.boot.dynamic_partitions_retrofit=true
 
-PRODUCT_PACKAGES += \Add commentMore actions
+PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service \
     android.hardware.keymaster@3.0-impl \
@@ -24,7 +24,7 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.fastbootd.available=true
+    ro.fastbootd.available=true
 
 # Qcom decryption
 PRODUCT_PACKAGES += \
