@@ -17,8 +17,5 @@ ro.usb.model=ASUS_X00TD
 ro.usb.idVendor=0b05
 ro.usb.idProduct=4ee7
 
-# Platform
-ro.board.platform=sdm600
-
 ro.sf.lcd_density=420
 ro.opengles.version=196610
