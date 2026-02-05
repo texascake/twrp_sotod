@@ -7,6 +7,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.boot.dynamic_partitions_retrofit=true
 
 PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+
+PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service \
     android.hardware.keymaster@3.0-impl \
@@ -28,6 +32,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Qcom decryption
 PRODUCT_PACKAGES += \
+    libcryptfs_hw \
     qcom_decrypt \
     qcom_decrypt_fbe
 
