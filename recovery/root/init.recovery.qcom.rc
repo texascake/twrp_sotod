@@ -6,6 +6,17 @@ on boot
     exec u:r:recovery:s0 -- /system/bin/sleep 1s
     start keymaster-3-0
     start keymaster-3-0-qti
+    # Fix Vibrator X00TD
+    write /sys/class/leds/vibrator/activate 1
+    write /sys/class/leds/vibrator/duration 100
+    write /sys/class/leds/vibrator/state 1
+
+    # Berikan izin agar TWRP bisa mengaksesnya
+    chmod 0777 /sys/class/leds/vibrator/activate
+    chmod 0777 /sys/class/leds/vibrator/duration
+    chmod 0777 /sys/class/leds/vibrator/state
+    chown system system /sys/class/leds/vibrator/activate
+    chown system system /sys/class/leds/vibrator/duration
 
 on init
     exec u:r:recovery:s0 -- /system/bin/detect-dynamic-partitions.sh
